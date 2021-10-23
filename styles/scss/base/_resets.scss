@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $ff-kumbh;
+    &.no-scroll {
+        overflow: hidden;
+    }
+}
+
+h1,
+h2,
+h3 {
+    font-family: $ff-kumbh;
+    font-weight: $fw-normal;
+}
+
+p {
+    line-height: 1.5;
+    font-weight: $fw-normal;
+}
+
+button {
+    cursor: pointer;
+}
+
+.sr-only {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    display: block;
+}

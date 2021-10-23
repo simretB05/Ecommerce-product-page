@@ -900,6 +900,10 @@
   padding: 0 1rem;
 }
 
+.hide {
+  display: none;
+}
+
 .overlay-popup {
   display: none;
 }
@@ -934,6 +938,20 @@
             transform: translate(0, -112%);
     left: 60%;
   }
+}
+
+.overlay-show .active {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.display-hid {
+  display: none;
+}
+
+.hide-scroll {
+  overflow: hidden;
+  height: 100%;
 }
 
 * {

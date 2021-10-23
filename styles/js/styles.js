@@ -14,23 +14,38 @@ const openMenu = document.querySelector(".navbar__menu-open")
 const closeMenu = document.querySelector(".navbar__menu-close");
 const navbarList = document.querySelector(".navbar__list");
 const navbarlog = document.querySelector(".navbar__logo");
-const thumbnails = document.querySelector(".thumbnails__item");
+const thumbnails = document.querySelectorAll(".thumbnails__item");
 const slider = document.querySelector(".slider")
 const sliderClose = document.querySelector(".slider__close")
 const overlayPopup = document.querySelector(".overlay-popup")
 const popupClose = document.querySelector(".slider__close")
-thumbnails.addEventListener('click', (e) => {
-    console.log(e);
-    header.classList.toggle('overlay');
-    slider.classList.toggle('slider-change')
-    sliderClose.classList.toggle('yy')
-    overlayPopup.classList.toggle("overlay-show")
 
+thumbnails.forEach(item => {
+    item.addEventListener('click', event => {
+        if (header.classList.toggle('overlay')) {
+            slider.classList.toggle('slider-change')
+            overlayPopup.classList.add("overlay-show")
+        } else {
+            document.querySelector('.overlay-popup').style.display = "none";
+            reload();
+        }
+
+    });
 
 });
+
+
+
 popupClose.addEventListener('click', (e) => {
-    popupClose.classList.toggle('.hide')
     console.log(e)
+    header.classList.add('overlay')
+    popupClose.classList.remove("popup-close")
+    overlayPopup.classList.remove("overlay-show")
+    document.querySelector(".overlay").remove(".active")
+
+    reload();
+
+
 });
 
 navbarMenu.addEventListener('click', (e) => {
@@ -51,7 +66,9 @@ const toggleScroll = () => {
     document.body.classList.toggle('hide-scroll');
 }
 
-
+const reload = () => {
+    window.location.reload();
+}
 
 let navbarText = document.querySelector(".navbar__text")
 const popup = document.querySelector('.shoping-cart')

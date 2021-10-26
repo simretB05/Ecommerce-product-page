@@ -8,6 +8,7 @@
         padding: 2rem 1.4rem;
     }
 }
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -17,30 +18,26 @@
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
         padding: 0;
         margin: 0;
         z-index: 31;
     }
-
-    &__menu-open {
-        display: block;
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 31;
+    }
+    &__btn-open {
         @include laptop-query {
             display: none;
         }
     }
-
-    &__menu-close {
+    &__btn-close {
         display: none;
-    }
-    .hide {
-        display: none;
-    }
-    .show {
-        display: block;
-        z-index: 31;
     }
     &__logo {
         width: 130px;
@@ -52,13 +49,14 @@
         top: 0;
         right: 6%;
         left: -2%;
-        z-index: 17;
+        z-index: 30;
         width: 70%;
         height: 100vh;
         list-style: none;
         background-color: $c-White;
         padding: 7rem 0;
         display: none;
+
         @include laptop-query {
             display: flex;
             justify-content: flex-start;
@@ -69,10 +67,19 @@
             margin: 0;
         }
     }
-
+    .hide {
+        display: none;
+    }
+    .show {
+        display: block;
+        @include laptop-query {
+            display: none;
+        }
+    }
     &__list-item {
         text-align: start;
         padding: 0.7rem 2.4rem;
+        z-index: 60;
         &:hover {
             transform: translateX(9px);
             color: $c-Orange;
@@ -97,17 +104,19 @@
     &__move-in {
         display: block;
         position: absolute;
-        top: 0;
+        top: 100%;
         right: 6%;
         left: -2%;
         z-index: 30;
-        width: 70%;
-        height: 880px;
+        max-width: 100%;
+        height: 945px;
         list-style: none;
         background-color: $c-White;
         padding: 7rem 0;
         animation: slidein 1s;
-
+        @include laptop-query {
+            display: block;
+        }
         @keyframes slidein {
             from {
                 transform: translateX(-100%);
@@ -115,6 +124,37 @@
 
             to {
                 transform: translateX(0);
+            }
+        }
+        @include tablet-query {
+        }
+        @include laptop-query {
+            display: none;
+        }
+    }
+    &__move-out {
+        display: block;
+        position: absolute;
+        top: 100%;
+        right: 0%;
+        left: -1px;
+        z-index: 30;
+        max-width: 100%;
+        height: 945px;
+        list-style: none;
+        background-color: $c-White;
+        padding: 7rem 0;
+        animation: slideout 1s ease-in-out;
+        @include laptop-query {
+            display: none;
+        }
+        @keyframes slideout {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-600px);
             }
         }
     }
@@ -156,16 +196,87 @@
 // * overlay section
 // */
 .overlay {
-    pointer-events: none;
     &::before {
         content: "";
-        z-index: 1;
         opacity: 0.77;
-        width: 100%;
+        width: 32%;
         height: 100vh;
         display: block;
+        right: 0;
+        top: 0;
         position: absolute;
         background: $c-Black;
-        z-index: 18;
+        z-index: 5;
+        animation: slidex 1s;
+        @keyframes slidex {
+            from {
+                transform: translateX(-300px);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+        @include tablet-query {
+            max-width: 100%;
+            animation: slidexx 1s;
+            @keyframes slidexx {
+                from {
+                    transform: translateX(-610px);
+                }
+
+                to {
+                    transform: translateX(0);
+                }
+            }
+
+            @include laptop-query {
+                display: none;
+            }
+        }
     }
+}
+.overlay-out {
+    &::before {
+        content: "";
+        opacity: 0.77;
+        width: 103px;
+        height: 100vh;
+        display: block;
+        right: 0;
+        top: 0;
+        position: absolute;
+        background: $c-Black;
+        z-index: 5;
+        animation: slidex 1s;
+        @keyframes slidex {
+            from {
+                transform: translateX(-300px);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+        @include tablet-query {
+        }
+        @include laptop-query {
+            display: none;
+        }
+    }
+}
+.overlay-large {
+    position: fixed;
+    // opacity: 0;
+    top: 0%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $c-Black;
+    opacity: 0.77;
+    pointer-events: none;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
 }

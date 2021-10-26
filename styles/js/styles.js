@@ -9,21 +9,21 @@ let products = [
 
 const header = document.querySelector(".header")
 const navbar = document.querySelector(".navbar");
-const navbarMenu = document.querySelector(".navbar__menu");
-const openMenu = document.querySelector(".navbar__menu-open")
-const closeMenu = document.querySelector(".navbar__menu-close");
+const navbarBtn = document.querySelector(".navbar__btn");
+const openMenu = document.querySelector(".navbar__btn-open")
+const closeMenu = document.querySelector(".navbar__btn-close");
 const navbarList = document.querySelector(".navbar__list");
 const navbarlog = document.querySelector(".navbar__logo");
 const thumbnails = document.querySelectorAll(".thumbnails__item");
-const slider = document.querySelector(".slider")
-const sliderClose = document.querySelector(".slider__close")
+const slider = document.querySelector(".glider")
+const sliderClose = document.querySelector(".glider__close")
 const overlayPopup = document.querySelector(".overlay-popup")
-const popupClose = document.querySelector(".slider__close")
+const popupClose = document.querySelector(".glider__close")
 
 thumbnails.forEach(item => {
     item.addEventListener('click', event => {
-        if (header.classList.toggle('overlay')) {
-            slider.classList.toggle('slider-change')
+        if (header.classList.toggle('overlay-large')) {
+            slider.classList.toggle('glider-change')
             overlayPopup.classList.add("overlay-show")
         } else {
             document.querySelector('.overlay-popup').style.display = "none";
@@ -33,9 +33,6 @@ thumbnails.forEach(item => {
     });
 
 });
-
-
-
 popupClose.addEventListener('click', (e) => {
     console.log(e)
     header.classList.add('overlay')
@@ -44,15 +41,13 @@ popupClose.addEventListener('click', (e) => {
     document.querySelector(".overlay").remove(".active")
 
     reload();
-
-
 });
 
-navbarMenu.addEventListener('click', (e) => {
+openMenu.addEventListener('click', (e) => {
     console.log(e)
     navbarList.classList.toggle('navbar__move-in');
-    openMenu.classList.toggle('hide');
-    closeMenu.classList.toggle('show');
+    openMenu.classList.toggle('hide')
+    closeMenu.classList.toggle('show')
     navbarlog.classList.toggle('hide');
     header.classList.toggle('overlay');
 
@@ -62,8 +57,24 @@ navbarMenu.addEventListener('click', (e) => {
 
 });
 
+closeMenu.addEventListener('click', (e) => {
+    console.log(e)
+    closeMenu.classList.toggle('show')
+    navbarList.classList.add('navbar__move-out');
+    header.classList.toggle('overlay');
+    navbarlog.classList.toggle('hide');
+    openMenu.classList.toggle('hide')
+
+
+
+    reload();
+
+
+});
+
 const toggleScroll = () => {
     document.body.classList.toggle('hide-scroll');
+
 }
 
 const reload = () => {

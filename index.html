@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="./styles/css/index.css">
   <title>Frontend Mentor | E-commerce product page</title>
-
 </head>
 
 <body>
   <header class="header">
     <div class="header__container">
       <nav class="navbar">
-        <button class="navbar__menu">
-          <img class="navbar__menu-open" src="./assets/icons/icon-menu.svg" alt="">
-          <img class="navbar__menu-close" src="./assets/icons/icon-close.svg" alt="">
-          <img class="navbar__logo" src="./assets/images/logo.svg" alt="sneakers">
-        </button>
+        <div class="navbar__menu">
+          <button class="navbar__btn" aria-label="open navbar">
+            <img class="navbar__btn-open" src="./assets/icons/icon-menu.svg" alt="">
+            <img class="navbar__btn-close" src="./assets/icons/icon-close.svg" alt="">
+          </button>
+          <a href="#"><img class="navbar__logo" src="./assets/images/logo.svg" alt="sneakers"></a>
+        </div>
         <ul class="navbar__list">
           <li class="navbar__list-item"> <a class=" navbar__list-item-link" href="#"> Collections</li></a>
           <li class="navbar__list-item"> <a class=" navbar__list-item-link" href="#"> Men</li></a>
@@ -49,7 +49,6 @@
           <div class="shoping-cart__text-container">
             <h3 class="shoping-cart__title">Autumn Limited Edition...</h3>
             <p class="shoping-cart__text">$125.00x 3 <span class="shoping-cart__span">$375.00</span></p>
-
           </div>
           <button class="shoping-cart__delete"><img src="./assets/icons/icon-delete.svg" alt=""></button>
         </div>
@@ -101,9 +100,15 @@
         </ul>
       </div>
       <div class="overlay-popup">
-        <div class="slider">
-          <div class="slider__menu">
-            <button class="slider__close">
+        <div class="glider">
+          <div class="glider__navigation">
+            <button class="glider__prev-btn"> <img src="./assets/icons/icon-previous.svg" alt="">
+            </button>
+            <button class="glider__next-btn"> <img src="./assets/icons/icon-next.svg" alt="">
+            </button>
+          </div>
+          <div class="glider__menu">
+            <button class="glider__close">
               <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
@@ -111,31 +116,29 @@
               </svg>
             </button>
           </div>
-          <ul class="slider__list">
-            <li id="slider1" class="slider__list-item"><img class="slider__list-item-img"
+          <ul class="glider__list">
+            <li id="glider1" class="slider__list-item"><img class="glider__list-item-img"
                 src="./assets/images/image-product-1.jpg" alt=""></li>
 
-            <li id="slider2" class="slider__list-item"><img class="slider__list-item-img"
+            <li id="glider2" class="slider__list-item"><img class="glider__list-item-img"
                 src="./assets/images/image-product-2.jpg" alt=""></li>
-
-
-            <li id="slider3" class="slider__list-item" "><img class=" slider__list-item-img"
+            <li id="glider3" class="slider__list-item" "><img class=" glider__list-item-img"
               src="./assets/images/image-product-3.jpg" alt=""></li>
 
-            <li id="slider4" class="slider__list-item"><img class="slider__list-item-img"
+            <li id="glider4" class="slider__list-item"><img class="glider__list-item-img"
                 src="./assets/images/image-product-4.jpg" alt=""></li>
           </ul>
-          <ul class="thumbnails">
-            <li class="thumbnails__item"><a class="thumbnails__item-link" href="#slider1"><img class="thumbnails__img"
+          <ul class="humbnails">
+            <li class="humbnails__item"><a class="thumbnails__item-link" href="#glider1"><img class="thumbnails__img"
                   src="./assets/images/image-product-1-thumbnail.jpg" alt=""></a>
             </li>
-            <li class="thumbnails__item"><a class="thumbnails__item-link" href="#slider2"><img class="thumbnails__img"
+            <li class="humbnails__item"><a class="thumbnails__item-link" href="#glider2"><img class="thumbnails__img"
                   src="./assets/images/image-product-2-thumbnail.jpg" alt=""></a>
             </li>
-            <li class="thumbnails__item"><a class="thumbnails__item-link" href="#slider3"><img class="thumbnails__img"
+            <li class="humbnails__item"><a class="thumbnails__item-link" href="#glider3"><img class="thumbnails__img"
                   src="./assets/images/image-product-3-thumbnail.jpg" alt=""></a>
             </li>
-            <li class="thumbnails__item"><a class="thumbnails__item-link" href="#slider4"><img class="thumbnails__img"
+            <li class="humbnails__item"><a class="thumbnails__item-link" href="#glider4"><img class="thumbnails__img"
                   src="./assets/images/image-product-4-thumbnail.jpg" alt=""></a>
             </li>
           </ul>

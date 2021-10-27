@@ -1176,6 +1176,7 @@
 .price__text-original-price {
   font-weight: 900;
   color: #b6bcc8;
+  text-decoration: line-through;
 }
 
 @media screen and (min-width: 1024px) {

@@ -516,6 +516,7 @@
     &__text-original-price {
         font-weight: $fw-bold;
         color: $c-Grayish-blue;
+        text-decoration: line-through;
     }
 }
 .counter-section {

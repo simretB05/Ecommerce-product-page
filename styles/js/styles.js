@@ -20,6 +20,7 @@ const sliderClose = document.querySelector(".glider__close")
 const overlayPopup = document.querySelector(".overlay-popup")
 const popupClose = document.querySelector(".glider__close")
 
+
 thumbnails.forEach(item => {
     item.addEventListener('click', event => {
         if (header.classList.toggle('overlay-large')) {

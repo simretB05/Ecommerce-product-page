@@ -1,11 +1,11 @@
-let products = [
+let Products =
 
-    {
-        description: "Autumn Limited Edition...",
-        price: '$250.00',
-        intCart: 0
+{
+    description: "Autumn Limited Edition...",
+    price: '$250.00',
+    intCart: 0
 
-    }]
+}
 
 const header = document.querySelector(".header")
 const navbar = document.querySelector(".navbar");
@@ -91,14 +91,13 @@ let intCart = document.querySelector('.navbar__text')
 let cartBtn = document.querySelector('.navbar__shop-cart-icon')
 let integer = 0;
 
-
+/************adding to carts******/
 
 add.addEventListener("click", () => {
     integer += 1;
     int.textContent = integer;
     console.log("added to cart");
     cartNumbers();
-    navbarText.classList.toggle(".yy")
 
 
 });
@@ -124,10 +123,33 @@ let cart = document.querySelector('.cart');
 cart.addEventListener('click', () => {
     console.log("added to cart");
 
-
 });
+
+function onLoadcartNumbers() {
+    let productNumbers = localStorage.getItem('cartNumbers');
+    if (productNumbers) {
+        document.querySelector(".navbar__text").textContent = productNumbers;
+    }
+}
+
+
+
 function cartNumbers() {
 
+
+    let products =
+
+    {
+
+        description: "Autumn Limited Edition...",
+        price: '$250.00',
+        intCart: 0
+
+    }
+
+    const objectValues = Object(products)
+
+    console.log("the product clicked is", objectValues);
     let productNumbers = localStorage.getItem('cartNumbers');
     productNumbers = parseInt(productNumbers);
 
@@ -137,30 +159,47 @@ function cartNumbers() {
 
     } else {
         localStorage.setItem('cartNumbers', 1);
-        document.querySelector('navbar__text').textContent = 1;
-    }
-
-}
-function onLoadcartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
-    if (productNumbers) {
-        document.querySelector(".navbar__text").textContent = productNumbers;
-    }
-}
-
-function removeNumbers() {
-
-    let removeItems = localStorage.getItem('removeNumbers');
-    removeItems = parseInt(removeItems);
-
-    if (removeItems) {
-        localStorage.setItem('removeNumbers', removeItems - 1);
-        document.querySelector('.navbar__text').textContent = removeItems - 1;
-
-    } else {
-        localStorage.setItem('removeNumbers', 1);
         document.querySelector('navbar__text').textContent = 0;
     }
+    setItems(products);
 }
+
+
+// function removeNumbers() {
+
+//     let removeItems = localStorage.getItem('removeNumbers');
+//     removeItems = parseInt(removeItems);
+
+//     if (removeItems) {
+//         localStorage.setItem('removeNumbers', removeItems - 1);
+//         document.querySelector('.navbar__text').innerHTML = removeItems - 1;
+
+//     } else {
+//         localStorage.setItem('removeNumbers', 0);
+//         document.querySelector('.navbar__text').innerHTML = 0;
+//     }
+//     setItems(products);
+// }
+
+function setItems(products) {
+    let cartItems = localStorage.getItem('productIncart')
+    cartItems = JSON.parse(cartItems);
+    console.log('inside of setItems function');
+    console.log("my product is ", cartItems)
+
+    if (cartItems != null) {
+        cartItems[products.tag] += 1;
+    } else {
+        products.intCart = 1
+        cartItems = {
+            [products.tag]: products
+        }
+
+    }
+
+    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+
+}
+
 
 onLoadcartNumbers()

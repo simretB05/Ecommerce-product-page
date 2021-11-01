@@ -164,7 +164,7 @@
   width: 100%;
   font-size: 14px;
   font-weight: 900;
-  color: black;
+  color: #a6a8ab;
   text-decoration: none;
 }
 
@@ -286,8 +286,8 @@
 }
 
 .navbar__shop-profile-picture {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
 }
 
 .navbar__shop-profile-picture:hover {
@@ -490,7 +490,7 @@
 
 .shoping-cart__hr {
   height: 0.81px;
-  background-color: #b6bcc8;
+  background-color: #d1d6e1;
   border: none;
   opacity: 0.4;
 }
@@ -1087,7 +1087,7 @@
 
 @media screen and (min-width: 1440px) {
   .description {
-    padding: 1rem 1.4rem 0 2rem;
+    padding: 1rem 1.4rem 0 10rem;
   }
 }
 
@@ -1157,7 +1157,7 @@
 
 @media screen and (min-width: 1440px) {
   .price-container {
-    padding: 1rem 1.4rem 0 2rem;
+    padding: 1rem 1.4rem 0 10rem;
   }
 }
 
@@ -1215,7 +1215,7 @@
 
 .price__text-original-price {
   font-weight: 900;
-  color: #b6bcc8;
+  color: #d1d6e1;
   text-decoration: line-through;
 }
 

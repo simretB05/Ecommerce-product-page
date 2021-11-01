@@ -448,7 +448,7 @@
         padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
     }
     @include laptop-l-query {
-        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
+        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 10;
     }
     &__small {
         text-transform: uppercase;
@@ -496,7 +496,7 @@
 .price-container {
     padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
     @include laptop-l-query {
-        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
+        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 10;
     }
 }
 .price {

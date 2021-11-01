@@ -101,7 +101,7 @@
         width: 100%;
         font-size: $c-mfont-size;
         font-weight: $fw-bold;
-        color: $c-Black;
+        color: $c-light-black;
         text-decoration: none;
         &:hover {
             color: $c-Orange;
@@ -178,8 +178,8 @@
         background-color: transparent;
     }
     &__shop-profile-picture {
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
         &:hover {
             border-radius: 50%;
             border: 0.001rem solid $c-Orange;

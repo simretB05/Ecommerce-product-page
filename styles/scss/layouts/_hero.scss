@@ -491,10 +491,7 @@
     }
 }
 .price-container {
-    padding: 0.5rem 1.4rem;
-    @include laptop-l-query {
-        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 7;
-    }
+    padding: $p-base * 1 $p-base * 1.4 0 $p-base * 7;
 }
 .price {
     padding: 1rem 0;

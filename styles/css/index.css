@@ -1136,13 +1136,7 @@
 }
 
 .price-container {
-  padding: 0.5rem 1.4rem;
-}
-
-@media screen and (min-width: 1440px) {
-  .price-container {
-    padding: 1rem 1.4rem 0 7rem;
-  }
+  padding: 1rem 1.4rem 0 7rem;
 }
 
 .price {

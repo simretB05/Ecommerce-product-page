@@ -9,6 +9,9 @@
         @include laptop-query {
             padding: 2rem 6rem;
         }
+        @include laptop-l-query {
+            padding: 2rem 7rem;
+        }
     }
 }
 
@@ -167,18 +170,7 @@
         width: 70px;
     }
     &__text {
-        position: absolute;
-        width: 20px;
-        height: 15px;
-        text-align: center;
-        top: 21px;
-        right: 67px;
-        color: white;
-        background-color: $c-Orange;
-        border-radius: 50%;
-        font-size: $c-Smfont-size;
-        font-weight: $fw-bold;
-        z-index: 4;
+        display: none;
     }
     &__shop-cart-icon {
         // padding: 0 1rem;
@@ -193,6 +185,20 @@
             border: 0.001rem solid $c-Orange;
         }
     }
+}
+.popup-show {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    text-align: center;
+    top: 27px;
+    color: white;
+    background-color: $c-Orange;
+    border-radius: 50%;
+    font-size: $c-Smfont-size;
+    font-weight: $fw-bold;
+    z-index: 4;
+    display: block;
 }
 .hide-scroll {
     overflow: hidden;

@@ -112,7 +112,7 @@
         width: 38%;
         flex-direction: row;
         @include laptop-l-query {
-            max-width: 34%;
+            max-width: 30%;
         }
     }
     &__navigation {
@@ -444,8 +444,11 @@
 }
 .description {
     padding: $p-base * 1 $p-base * 1.4 0 $p-base * 1.4;
+    @include laptop-query {
+        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
+    }
     @include laptop-l-query {
-        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 7;
+        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
     }
     &__small {
         text-transform: uppercase;
@@ -491,7 +494,10 @@
     }
 }
 .price-container {
-    padding: $p-base * 1 $p-base * 1.4 0 $p-base * 7;
+    padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
+    @include laptop-l-query {
+        padding: $p-base * 1 $p-base * 1.4 0 $p-base * 2;
+    }
 }
 .price {
     padding: 1rem 0;
@@ -501,7 +507,6 @@
     justify-content: space-between;
     @include laptop-query {
         flex-direction: column;
-        padding: 0.5rem;
     }
     &__main {
         width: 146px;

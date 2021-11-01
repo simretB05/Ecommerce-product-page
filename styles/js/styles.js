@@ -1,11 +1,3 @@
-let Products =
-
-{
-    description: "Autumn Limited Edition...",
-    price: '$250.00',
-    intCart: 0
-
-}
 
 const header = document.querySelector(".header")
 const navbar = document.querySelector(".navbar");
@@ -19,10 +11,12 @@ const slider = document.querySelector(".glider")
 const sliderClose = document.querySelector(".glider__close")
 const overlayPopup = document.querySelector(".overlay-popup")
 const popupClose = document.querySelector(".glider__close")
+const popupText = document.querySelector(".navbar__text")
 
 
 thumbnails.forEach(item => {
     item.addEventListener('click', event => {
+
         if (header.classList.toggle('overlay-large')) {
             slider.classList.toggle('glider-change')
             overlayPopup.classList.add("overlay-show")
@@ -94,19 +88,29 @@ let integer = 0;
 /************adding to carts******/
 
 add.addEventListener("click", () => {
-    integer += 1;
-    int.textContent = integer;
-    console.log("added to cart");
-    cartNumbers();
 
+    products =
 
-});
-remove.addEventListener("click", () => {
-    integer -= 1
-    int.textContent = integer;
-    console.log("removed from cart");
+    {
+        description: "Autumn Limited Edition...",
+        price: '$250.00',
+        intCart: 0
 
-    removeNumbers()
+    }
+    const objectValues = Object(products)
+    console.log("the product clicked is", objectValues);
+    let productNumbers = localStorage.getItem('cartNumbers');
+    productNumbers = parseInt(productNumbers);
+
+    if (productNumbers) {
+        localStorage.setItem('cartNumbers', productNumbers + 1);
+        document.querySelector('.navbar__text').textContent = productNumbers + 1;
+
+    } else {
+        localStorage.setItem('cartNumbers', 1);
+        document.querySelector('navbar__text').textContent = 0;
+    }
+    setItems(products);
 });
 
 cartBtn.addEventListener('click', () => {
@@ -125,6 +129,14 @@ cart.addEventListener('click', () => {
 
 });
 
+
+CartCounter = document.querySelector(".cart")
+CartCounter.addEventListener('click', () => {
+
+    popupText.classList.add("popup-show")
+
+})
+
 function onLoadcartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers');
     if (productNumbers) {
@@ -134,35 +146,12 @@ function onLoadcartNumbers() {
 
 
 
-function cartNumbers() {
+// function cartNumbers() {
 
 
-    let products =
 
-    {
 
-        description: "Autumn Limited Edition...",
-        price: '$250.00',
-        intCart: 0
-
-    }
-
-    const objectValues = Object(products)
-
-    console.log("the product clicked is", objectValues);
-    let productNumbers = localStorage.getItem('cartNumbers');
-    productNumbers = parseInt(productNumbers);
-
-    if (productNumbers) {
-        localStorage.setItem('cartNumbers', productNumbers + 1);
-        document.querySelector('.navbar__text').textContent = productNumbers + 1;
-
-    } else {
-        localStorage.setItem('cartNumbers', 1);
-        document.querySelector('navbar__text').textContent = 0;
-    }
-    setItems(products);
-}
+// }
 
 
 // function removeNumbers() {
@@ -175,13 +164,13 @@ function cartNumbers() {
 //         document.querySelector('.navbar__text').innerHTML = removeItems - 1;
 
 //     } else {
-//         localStorage.setItem('removeNumbers', 0);
-//         document.querySelector('.navbar__text').innerHTML = 0;
+//         localStorage.setItem('removeNumbers', 1);
+//         document.querySelector('.navbar__text').innerHTML -= 1;
 //     }
-//     setItems(products);
 // }
 
 function setItems(products) {
+
     let cartItems = localStorage.getItem('productIncart')
     cartItems = JSON.parse(cartItems);
     console.log('inside of setItems function');

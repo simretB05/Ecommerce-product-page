@@ -1,8 +1,10 @@
 .header {
     height: 80px;
     position: relative;
+    width: 100%;
+
     @include laptop-query {
-        border-bottom: 0.006px solid $c-Grayish-blue-border;
+        z-index: 1;
     }
     &__container {
         padding: 2rem 1.4rem;
@@ -10,7 +12,19 @@
             padding: 2rem 6rem;
         }
         @include laptop-l-query {
-            padding: 2rem 7rem;
+            padding: 2rem 17rem;
+        }
+    }
+    &__hr {
+        display: none;
+        @include laptop-query {
+            display: block;
+            width: 100%;
+            height: 0.81px;
+            background-color: $c-Grayish-blue;
+            margin: 0;
+            opacity: 0.4;
+            margin: 1rem 0;
         }
     }
 }
@@ -18,24 +32,29 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    // align-items: flex-end;
+    align-items: center;
+    @include laptop-query {
+    }
 
     &__menu {
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        justify-content: flex-start;
+        align-items: center;
         padding: 0;
         margin: 0;
-        z-index: 31;
     }
     &__btn {
+        width: 28px;
         display: flex;
-        justify-content: center;
-        align-content: center;
+        justify-content: flex-start;
+        align-content: flex-start;
         background-color: transparent;
         border: none;
         cursor: pointer;
         z-index: 31;
+        @include laptop-query {
+            display: none;
+        }
     }
     &__btn-open {
         @include laptop-query {
@@ -46,9 +65,9 @@
         display: none;
     }
     &__logo {
-        width: 130px;
-        height: 18px;
-        padding: 0 14px;
+        @include laptop-query {
+            padding: 0;
+        }
     }
     &__list {
         position: absolute;
@@ -64,13 +83,19 @@
         display: none;
 
         @include laptop-query {
+            position: absolute;
             display: flex;
-            justify-content: flex-start;
-            align-content: center;
-            position: relative;
-            height: 100%;
-            padding: 0;
-            margin: 0;
+            height: 20px;
+            width: 100%;
+            background-color: transparent;
+            top: -70px;
+            right: 100px;
+            left: 308px;
+        }
+        @include laptop-l-query {
+            top: -70px;
+            right: 100px;
+            left: 441px;
         }
     }
     .hide {
@@ -103,8 +128,24 @@
         font-weight: $fw-bold;
         color: $c-light-black;
         text-decoration: none;
+
         &:hover {
+            padding: 0.4rem 0;
+            border-bottom: 2px solid $c-Orange;
+            animation: addx;
             color: $c-Orange;
+            @keyframes addx {
+                from {
+                    transform: scaleX(0);
+                }
+
+                to {
+                    transform: scaleX() (100%);
+                }
+            }
+            @include laptop-query {
+                padding: 1.66rem 0;
+            }
         }
     }
     &__move-in {
@@ -120,9 +161,7 @@
         background-color: $c-White;
         padding: 7rem 0;
         animation: slidein 1s;
-        @include laptop-query {
-            display: block;
-        }
+
         @keyframes slidein {
             from {
                 transform: translateX(-80%);
@@ -167,6 +206,8 @@
     &__shop {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
         width: 70px;
     }
     &__text {
@@ -177,12 +218,17 @@
         border: none;
         background-color: transparent;
     }
+
     &__shop-profile-picture {
-        width: 40px;
-        height: 40px;
+        width: 25px;
+        height: 25px;
         &:hover {
             border-radius: 50%;
             border: 0.001rem solid $c-Orange;
+        }
+        @include laptop-query {
+            width: 40px;
+            height: 40px;
         }
     }
 }
@@ -279,17 +325,21 @@
     }
 }
 .overlay-large {
-    position: fixed;
-    // opacity: 0;
-    top: 0%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $c-Black;
-    opacity: 0.77;
-    pointer-events: none;
-    z-index: 31;
-    width: 100%;
-    height: 100%;
-    pointer-events: all;
+    @include laptop-query {
+        display: block;
+        position: absolute;
+        // opacity: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $c-Black;
+        opacity: 0.77;
+        pointer-events: none;
+        z-index: 31;
+        width: 100%;
+        height: 100%;
+
+        pointer-events: all;
+    }
 }

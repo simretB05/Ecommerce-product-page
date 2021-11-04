@@ -12,31 +12,74 @@ const sliderClose = document.querySelector(".glider__close")
 const overlayPopup = document.querySelector(".overlay-popup")
 const popupClose = document.querySelector(".glider__close")
 const popupText = document.querySelector(".navbar__text")
+const sliderImages = document.querySelector(".slider").children;
+const prev = document.querySelector(".hero__prev-btn");
+const next = document.querySelector(".hero__next-btn");
+const totalImages = sliderImages.length;
+let index = 0;
 
 
-thumbnails.forEach(item => {
-    item.addEventListener('click', event => {
+prev.addEventListener('click', (e) => {
+    // console.log(e)
+    e.preventDefault();
+    nextImage('prev');
+});
+next.addEventListener('click', (e) => {
+    // console.log(e)
+    e.preventDefault();
+    nextImage('next');
+});
 
-        if (header.classList.toggle('overlay-large')) {
-            slider.classList.toggle('glider-change')
-            overlayPopup.classList.add("overlay-show")
-        } else {
-            document.querySelector('.overlay-popup').style.display = "none";
-            reload();
+function nextImage(direction) {
+    console.log(direction);
+    if (direction == 'next') {
+        index++;
+        if (index == totalImages) {
+            index = 0;
         }
+    } else {
+        if (index == 0) {
+            index = totalImages - 1;
 
-    });
+        } else {
+            index--;
+        }
+    }
+    for (let i = 0; i < sliderImages.length; i++) {
+        sliderImages[i].classList.remove('show');
 
-});
-popupClose.addEventListener('click', (e) => {
-    console.log(e)
-    header.classList.add('overlay')
-    popupClose.classList.remove("popup-close")
-    overlayPopup.classList.remove("overlay-show")
-    document.querySelector(".overlay").remove(".active")
+    }
+    sliderImages[index].classList.add('show');
+}
 
-    reload();
-});
+
+
+// thumbnails.forEach(item => {
+//     item.addEventListener('click', event => {
+
+//         if (header.classList.toggle('overlay-large')) {
+//             slider.classList.toggle('glider-change')
+//             // overlayPopup.classList.add("overlay-show")
+//             toggleScroll();
+
+//         } else {
+//             document.querySelector('.overlay-popup').style.display = "none";
+//             reload();
+//         }
+
+//     });
+
+// });
+
+// popupClose.addEventListener('click', (e) => {
+//     console.log(e)
+//     header.classList.add('overlay')
+//     popupClose.classList.remove("popup-close")
+//     overlayPopup.classList.remove("overlay-show")
+//     document.querySelector(".overlay").remove(".active")
+
+//     reload();
+// });
 
 openMenu.addEventListener('click', (e) => {
     console.log(e)
@@ -87,108 +130,3 @@ let integer = 0;
 
 /************adding to carts******/
 
-add.addEventListener("click", () => {
-
-    products =
-
-    {
-        description: "Autumn Limited Edition...",
-        price: '$250.00',
-        intCart: 0
-
-    }
-    const objectValues = Object(products)
-    console.log("the product clicked is", objectValues);
-    let productNumbers = localStorage.getItem('cartNumbers');
-    productNumbers = parseInt(productNumbers);
-
-    if (productNumbers) {
-        localStorage.setItem('cartNumbers', productNumbers + 1);
-        document.querySelector('.navbar__text').textContent = productNumbers + 1;
-
-    } else {
-        localStorage.setItem('cartNumbers', 1);
-        document.querySelector('navbar__text').textContent = 0;
-    }
-    setItems(products);
-});
-
-cartBtn.addEventListener('click', () => {
-    intCart.classList.toggle('show');
-    popup.classList.toggle('popup')
-    integer += 1;
-    intCart.textContent = integer;
-});
-
-let cart = document.querySelector('.cart');
-
-
-
-cart.addEventListener('click', () => {
-    console.log("added to cart");
-
-});
-
-
-CartCounter = document.querySelector(".cart")
-CartCounter.addEventListener('click', () => {
-
-    popupText.classList.add("popup-show")
-
-})
-
-function onLoadcartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
-    if (productNumbers) {
-        document.querySelector(".navbar__text").textContent = productNumbers;
-    }
-}
-
-
-
-// function cartNumbers() {
-
-
-
-
-// }
-
-
-// function removeNumbers() {
-
-//     let removeItems = localStorage.getItem('removeNumbers');
-//     removeItems = parseInt(removeItems);
-
-//     if (removeItems) {
-//         localStorage.setItem('removeNumbers', removeItems - 1);
-//         document.querySelector('.navbar__text').innerHTML = removeItems - 1;
-
-//     } else {
-//         localStorage.setItem('removeNumbers', 1);
-//         document.querySelector('.navbar__text').innerHTML -= 1;
-//     }
-// }
-
-function setItems(products) {
-
-    let cartItems = localStorage.getItem('productIncart')
-    cartItems = JSON.parse(cartItems);
-    console.log('inside of setItems function');
-    console.log("my product is ", cartItems)
-
-    if (cartItems != null) {
-        cartItems[products.tag] += 1;
-    } else {
-        products.intCart = 1
-        cartItems = {
-            [products.tag]: products
-        }
-
-    }
-
-    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-
-}
-
-
-onLoadcartNumbers()

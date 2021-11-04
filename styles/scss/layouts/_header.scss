@@ -86,7 +86,7 @@
             position: absolute;
             display: flex;
             height: 20px;
-            width: 100%;
+            width: 34%;
             background-color: transparent;
             top: -70px;
             right: 100px;
@@ -144,7 +144,7 @@
                 }
             }
             @include laptop-query {
-                padding: 1.66rem 0;
+                padding: 1.8rem 0;
             }
         }
     }

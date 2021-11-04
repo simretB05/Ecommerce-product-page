@@ -130,3 +130,112 @@ let integer = 0;
 
 /************adding to carts******/
 
+add.addEventListener("click", () => {
+    integer += 1;
+    int.textContent = integer;
+    console.log("added to cart");
+    cartNumbers();
+
+
+});
+remove.addEventListener("click", () => {
+    integer -= 1
+    int.textContent = integer;
+    console.log("removed from cart");
+
+    removeNumbers()
+});
+
+cartBtn.addEventListener('click', () => {
+    intCart.classList.toggle('show');
+    popup.classList.toggle('popup')
+    integer += 1;
+    intCart.textContent = integer;
+});
+
+
+let cart = document.querySelector('.cart');
+
+
+
+cart.addEventListener('click', () => {
+    console.log("added to cart");
+
+});
+
+function onLoadcartNumbers() {
+    let productNumbers = localStorage.getItem('cartNumbers');
+    if (productNumbers) {
+        document.querySelector(".navbar__text").textContent = productNumbers;
+    }
+}
+
+
+
+function cartNumbers() {
+
+
+    let products =
+
+    {
+
+        description: "Autumn Limited Edition...",
+        price: '$250.00',
+        intCart: 0
+
+    }
+
+    const objectValues = Object(products)
+
+    console.log("the product clicked is", objectValues);
+    let productNumbers = localStorage.getItem('cartNumbers');
+    productNumbers = parseInt(productNumbers);
+
+    if (productNumbers) {
+        localStorage.setItem('cartNumbers', productNumbers + 1);
+        document.querySelector('.navbar__text').textContent = productNumbers + 1;
+
+    } else {
+        localStorage.setItem('cartNumbers', 1);
+        document.querySelector('navbar__text').textContent = 0;
+    }
+    setItems(products);
+}
+
+
+function removeNumbers() {
+
+    let removeItems = localStorage.getItem('removeNumbers');
+    removeItems = parseInt(removeItems);
+
+    if (removeItems) {
+        localStorage.setItem('removeNumbers', removeItems - 1);
+        document.querySelector('.navbar__text').innerHTML = removeItems - 1;
+
+    } else {
+        localStorage.setItem('removeNumbers', 0);
+        document.querySelector('.navbar__text').innerHTML = 0;
+    }
+    setItems(products);
+}
+
+function setItems(products) {
+    let cartItems = localStorage.getItem('productIncart')
+    cartItems = JSON.parse(cartItems);
+    console.log('inside of setItems function');
+    console.log("my product is ", cartItems)
+
+    if (cartItems != null) {
+        cartItems[products.tag] += 1;
+    } else {
+        products.intCart = 1
+        cartItems = {
+            [products.tag]: products
+        }
+
+    }
+
+    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+
+}
+

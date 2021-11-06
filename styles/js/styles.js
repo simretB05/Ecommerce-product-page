@@ -139,36 +139,33 @@ add.addEventListener("click", () => {
 
 });
 remove.addEventListener("click", () => {
-    integer -= 1
-    int.textContent = integer;
-    console.log("removed from cart");
+    if (integer < 1) {
 
-    removeNumbers()
+        int.textContent = 0;
+    } else {
+        if (integer -= 1) {
+            int.textContent = integer;
+        }
+
+    }
+    console.log("removed from cart");
+    cartNumbers();
+
 });
 
 cartBtn.addEventListener('click', () => {
     intCart.classList.toggle('show');
     popup.classList.toggle('popup')
-    integer += 1;
-    intCart.textContent = integer;
+
 });
 
 
 let cart = document.querySelector('.cart');
 
-
-
 cart.addEventListener('click', () => {
-    console.log("added to cart");
 
 });
 
-function onLoadcartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
-    if (productNumbers) {
-        document.querySelector(".navbar__text").textContent = productNumbers;
-    }
-}
 
 
 
@@ -189,35 +186,30 @@ function cartNumbers() {
 
     console.log("the product clicked is", objectValues);
     let productNumbers = localStorage.getItem('cartNumbers');
+    let removeNumbers = localStorage.getItem('cartNumbers')
     productNumbers = parseInt(productNumbers);
+    removeNumbers = parseInt(removeNumbers);
 
     if (productNumbers) {
         localStorage.setItem('cartNumbers', productNumbers + 1);
         document.querySelector('.navbar__text').textContent = productNumbers + 1;
-
     } else {
-        localStorage.setItem('cartNumbers', 1);
-        document.querySelector('navbar__text').textContent = 0;
+        if (productNumbers) {
+            localStorage.setItem('cartNumbers', removeNumbers--);
+            document.querySelector('.navbar__text').textContent = removeNumbers--;
+        }
     }
     setItems(products);
 }
 
 
-function removeNumbers() {
 
-    let removeItems = localStorage.getItem('removeNumbers');
-    removeItems = parseInt(removeItems);
 
-    if (removeItems) {
-        localStorage.setItem('removeNumbers', removeItems - 1);
-        document.querySelector('.navbar__text').innerHTML = removeItems - 1;
 
-    } else {
-        localStorage.setItem('removeNumbers', 0);
-        document.querySelector('.navbar__text').innerHTML = 0;
-    }
-    setItems(products);
-}
+
+
+
+
 
 function setItems(products) {
     let cartItems = localStorage.getItem('productIncart')

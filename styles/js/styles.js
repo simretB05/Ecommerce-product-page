@@ -163,19 +163,29 @@ function addItemToCart(discription, price, count) {
     products.push(item);
 }
 console.log(products);
-// let cartItem = document.querySelector('.cart');
 
 
-add.addEventListener("click", (count) => {
+add.addEventListener("click", () => {
+    if (integer += 1) {
+        int.textContent = integer;
+        empty.classList.add('hide')
+    } else {
+        if (integer <= 0) {
+            int.textContent = 0
+            console.log("int is 0");
+            empty.classList.add('hide')
+        }
+    }
 
+    // console.log("int is 0");
+    // empty.classList.add('hide')
+
+
+
+    mainPop.classList.add("show-popup")
+    console.log("int is 0");
+    addItemToCart("discription", "$125.00", 1)
     console.log(products)
-    integer += 1;
-    int.textContent = integer;
-    // if (integer <= 0) {
-    //     int.textContent = 0
-    //     console.log("int is 0");
-    // }
-    addItemToCart("Apple", "$125.00", 1)
 });
 
 
@@ -185,33 +195,90 @@ function removeItemFromCart(discription, price, count) {
             products[i].count--;// cart[i].count = cart[i].count -1
             if (products[i].count === 0) {
                 products.splice(i, 1);
-                mainPop.classList.add('hide')
-                empty.classList.add('show-up')
-
             }
-            break;
+        }
+    }
+}
+
+remove.addEventListener("click", () => {
+
+    if (integer <= 0) {
+        int.textContent = 0
+        console.log("int is 0");
+        clearCart()
+
+        return false;
+
+
+    } else {
+        if (integer -= 1) {
+            int.textContent = integer;
+            console.log("removed from cart");
+        }
+    }
+
+    removeItemFromCart("Apple", "$125.00", 0)
+    console.log(products);
+
+});
+
+
+
+function removeItemFromCartAll(discription, price, count) {//removing all item name
+    for (var i in products) {
+        if (products[i].discription === discription) {
+            products.splice(i, 1);
+
         }
     }
 
 
 }
 
-remove.addEventListener("click", () => {
 
-    if (integer <= 1) {
-        int.textContent = 0
-        console.log("int is 0");
-    } else {
-        if (integer -= 1) {
-            int.textContent = integer;
-            console.log("removed from cart");
+const trashBtn = document.querySelector(".shoping-cart__delete")
 
-        }
-    }
-    removeItemFromCart("Apple", "$125.00", 0)
-    console.log(products);
+trashBtn.addEventListener('click', () => {
+    removeItemFromCartAll("discription", "$125.00", 1)
+    console.log(products)
+    mainPop.classList.remove("show-popup")
+    empty.classList.add("show-up")
+    int.textContent = 0
+
+
 
 });
+
+function clearCart() {
+    mainPop.classList.remove("show-popup")
+    empty.classList.add("show-up")
+    int.textContent = 0
+    products = [];
+    console.log(products)
+}
+
+
+// let cartItem = document.querySelector('.cart');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // // const addbtn = (count) => {
@@ -257,24 +324,3 @@ remove.addEventListener("click", () => {
 // // removeItemFromCart("winter")
 
 // // console.log(cart[0].count);
-
-
-const trashBtn = document.querySelector(".shoping-cart__delete")
-
-trashBtn.addEventListener('click', () => {
-    mainPop.classList.add('hide')
-    empty.classList.add('show-up')
-});
-
-
-
-
-//     // for (var i in cart) {
-//     //     if (cart[i].name === name) {
-//     //         cart[i].count += count;
-//     //         return;
-
-//     //     }
-
-
-

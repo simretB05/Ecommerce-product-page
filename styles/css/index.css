@@ -562,6 +562,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 1rem 0;
+  display: none;
 }
 
 .shoping-cart__container {
@@ -613,7 +614,6 @@
 }
 
 .shoping-cart__empty {
-  display: none;
   margin: 0 auto;
   padding: 4rem;
   text-transform: capitalize;
@@ -914,6 +914,17 @@
 .show {
   display: block;
   margin: 0;
+}
+
+.show-popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem 0;
 }
 
 .overlay-popup {

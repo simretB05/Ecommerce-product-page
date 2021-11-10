@@ -9,8 +9,9 @@
     position: absolute;
     top: 97px;
     left: 6px;
-    z-index: 10;
+    z-index: 4;
     display: none;
+
     @include tablet-query {
         max-width: 363px;
         top: 7%;
@@ -18,9 +19,10 @@
     }
     @include laptop-query {
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-
-        top: 7%;
-        right: -63%;
+        top: 9%;
+        /* right: -102%; */
+        left: 75%;
+        margin: 0;
     }
     &__popup {
         display: flex;
@@ -33,7 +35,14 @@
         font-weight: $fw-black;
         padding: 1rem 0 1.5rem 1.5rem;
     }
-
+    &__hr {
+        display: block;
+        width: 100%;
+        height: 0.81px;
+        background-color: $c-Grayish-blue;
+        margin: 0;
+        opacity: 0.3;
+    }
     &__main-cont {
         display: flex;
         flex-direction: column;
@@ -44,6 +53,7 @@
         margin-bottom: 1rem;
         padding: 1.5rem 1.5rem 0 1.5rem;
     }
+
     &__title {
         padding: 0 1rem;
         font-size: 16px;
@@ -78,10 +88,14 @@
         margin: 0 1.5rem;
         font-size: $c-mfont-size;
     }
+    &__empty {
+        display: none;
+        margin: 0 auto;
+        padding: 4rem;
+        text-transform: capitalize;
+    }
 }
-.popup {
-    display: block;
-}
+
 .hero {
     width: 100%;
 
@@ -268,11 +282,24 @@
         }
     }
 }
+
+.hide {
+    display: none;
+}
+.show-up {
+    display: block;
+    margin: 0 auto;
+    padding: 4rem;
+    text-transform: capitalize;
+}
 .show {
     display: block;
+    margin: 0;
+
     @include laptop-query {
     }
 }
+
 .overlay-popup {
     z-index: 80;
     position: absolute;

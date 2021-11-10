@@ -126,108 +126,155 @@ let remove = document.querySelector(".counter__btn-minus");
 let int = document.querySelector(".counter__text")
 let intCart = document.querySelector('.navbar__text')
 let cartBtn = document.querySelector('.navbar__shop-cart-icon')
+let mainPop = document.querySelector('.shoping-cart__main-cont')
+let empty = document.querySelector('.shoping-cart__empty')
 let integer = 0;
 
 /************adding to carts******/
+cartBtn.addEventListener('click', () => {
+    intCart.classList.toggle('show');
+    popup.classList.toggle('show')
+    // integer += 1;
+    // intCart.textContent = integer;
+});
 
-add.addEventListener("click", () => {
+
+
+
+let products = [];
+
+let Item = function (discription, price, count) {
+    this.discription = discription
+    this.price = price
+    this.count = count
+
+
+};
+
+function addItemToCart(discription, price, count) {
+    for (let i in products) {
+        if (products[i].discription === discription) {
+            products[i].count++;
+            return;
+        }
+    }
+    var item = new Item(discription, price, count);
+
+    products.push(item);
+}
+console.log(products);
+// let cartItem = document.querySelector('.cart');
+
+
+add.addEventListener("click", (count) => {
+
+    console.log(products)
     integer += 1;
     int.textContent = integer;
-    console.log("added to cart");
-    cartNumbers();
-
-
+    // if (integer <= 0) {
+    //     int.textContent = 0
+    //     console.log("int is 0");
+    // }
+    addItemToCart("Apple", "$125.00", 1)
 });
-remove.addEventListener("click", () => {
-    if (integer < 1) {
 
-        int.textContent = 0;
+
+function removeItemFromCart(discription, price, count) {
+    for (var i in products) {
+        if (products[i].discription === discription) {
+            products[i].count--;// cart[i].count = cart[i].count -1
+            if (products[i].count === 0) {
+                products.splice(i, 1);
+                mainPop.classList.add('hide')
+                empty.classList.add('show-up')
+
+            }
+            break;
+        }
+    }
+
+
+}
+
+remove.addEventListener("click", () => {
+
+    if (integer <= 1) {
+        int.textContent = 0
+        console.log("int is 0");
     } else {
         if (integer -= 1) {
             int.textContent = integer;
+            console.log("removed from cart");
+
         }
-
     }
-    console.log("removed from cart");
-    cartNumbers();
-
-});
-
-cartBtn.addEventListener('click', () => {
-    intCart.classList.toggle('show');
-    popup.classList.toggle('popup')
+    removeItemFromCart("Apple", "$125.00", 0)
+    console.log(products);
 
 });
 
 
-let cart = document.querySelector('.cart');
+// // const addbtn = (count) => {
+// //     for (var i in cart) {
+// //         if (cart[i].count === count) {
+// //             cart[i].count++;
+// //             return;
+// //         }
+// //     }
+// //     var item = new Item(count);
+// //     cart.push(item);
+// //     console.log(cart)
+// // };
 
-cart.addEventListener('click', () => {
+// function removeItemFromCart(price, count) {
+//     for (var i in cart) {
+//         if (cart[i].text === text) {
+//             cart[i].count--;// cart[i].count = cart[i].count -1
+//             if (cart[i].count === 0) {
+//                 cart.splice(i, 1);
+//                 mainPop.classList.add('hide')
+//                 empty.classList.add('show-up')
+//             }
 
+//             break;
+//         }
+//     }
+
+// }
+// add.addEventListener("click", () => {
+
+// });
+// // addItemToCart("winter", 125.00, 1)
+// // // addItemToCart("Autumn Limited Edition...ple", 125.00, 1)
+// // // addItemToCart("spring Limited Edition...ple", 125.00, 1)
+// // // addItemToCart("fall", 125.00, 1)
+// // addItemToCart("winter", 125.00, 1)
+
+
+
+// // console.log(cart[0].count);
+
+// // removeItemFromCart("winter")
+
+// // console.log(cart[0].count);
+
+
+const trashBtn = document.querySelector(".shoping-cart__delete")
+
+trashBtn.addEventListener('click', () => {
+    mainPop.classList.add('hide')
+    empty.classList.add('show-up')
 });
 
 
 
 
-function cartNumbers() {
+//     // for (var i in cart) {
+//     //     if (cart[i].name === name) {
+//     //         cart[i].count += count;
+//     //         return;
+
+//     //     }
 
 
-    let products =
-
-    {
-
-        description: "Autumn Limited Edition...",
-        price: '$250.00',
-        intCart: 0
-
-    }
-
-    const objectValues = Object(products)
-
-    console.log("the product clicked is", objectValues);
-    let productNumbers = localStorage.getItem('cartNumbers');
-    let removeNumbers = localStorage.getItem('cartNumbers')
-    productNumbers = parseInt(productNumbers);
-    removeNumbers = parseInt(removeNumbers);
-
-    if (productNumbers) {
-        localStorage.setItem('cartNumbers', productNumbers + 1);
-        document.querySelector('.navbar__text').textContent = productNumbers + 1;
-    } else {
-        if (productNumbers) {
-            localStorage.setItem('cartNumbers', removeNumbers--);
-            document.querySelector('.navbar__text').textContent = removeNumbers--;
-        }
-    }
-    setItems(products);
-}
-
-
-
-
-
-
-
-
-
-
-function setItems(products) {
-    let cartItems = localStorage.getItem('productIncart')
-    cartItems = JSON.parse(cartItems);
-    console.log('inside of setItems function');
-    console.log("my product is ", cartItems)
-
-    if (cartItems != null) {
-        cartItems[products.tag] += 1;
-    } else {
-        products.intCart = 1
-        cartItems = {
-            [products.tag]: products
-        }
-
-    }
-
-    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-
-}
 

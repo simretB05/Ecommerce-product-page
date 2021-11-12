@@ -128,15 +128,15 @@ let intCart = document.querySelector('.navbar__text')
 let cartBtn = document.querySelector('.navbar__shop-cart-icon')
 let mainPop = document.querySelector('.shoping-cart__main-cont')
 let empty = document.querySelector('.shoping-cart__empty')
+
+
+
+
+
+
 let integer = 0;
 
 /************adding to carts******/
-cartBtn.addEventListener('click', () => {
-    intCart.classList.toggle('show');
-    popup.classList.toggle('show')
-    // integer += 1;
-    // intCart.textContent = integer;
-});
 
 
 
@@ -150,7 +150,7 @@ let Item = function (discription, price, count) {
 
 
 };
-
+/***********add to  cart ****************/
 function addItemToCart(discription, price, count) {
     for (let i in products) {
         if (products[i].discription === discription) {
@@ -162,7 +162,6 @@ function addItemToCart(discription, price, count) {
 
     products.push(item);
 }
-console.log(products);
 
 
 add.addEventListener("click", () => {
@@ -183,11 +182,12 @@ add.addEventListener("click", () => {
 
 
     mainPop.classList.add("show-popup")
-    console.log("int is 0");
+
     addItemToCart("discription", "$125.00", 1)
     console.log(products)
 });
 
+/***********remove from cart  ****************/
 
 function removeItemFromCart(discription, price, count) {
     for (var i in products) {
@@ -195,46 +195,52 @@ function removeItemFromCart(discription, price, count) {
             products[i].count--;// cart[i].count = cart[i].count -1
             if (products[i].count === 0) {
                 products.splice(i, 1);
+                return false
+
             }
         }
     }
 }
-
+console.log(products)
 remove.addEventListener("click", () => {
 
     if (integer <= 0) {
-        int.textContent = 0
-        console.log("int is 0");
-        clearCart()
-
-        return false;
-
-
+        int.textContent === 0
     } else {
-        if (integer -= 1) {
-            int.textContent = integer;
-            console.log("removed from cart");
-        }
+        integer -= 1
+        int.textContent = integer
+        console.log("int is 0");
+        empty.classList.add('hide')
+
     }
 
-    removeItemFromCart("Apple", "$125.00", 0)
-    console.log(products);
+
+    removeItemFromCart("discription")
+    console.log(products)
 
 });
 
 
 
-function removeItemFromCartAll(discription, price, count) {//removing all item name
-    for (var i in products) {
-        if (products[i].discription === discription) {
-            products.splice(i, 1);
+cartBtn.addEventListener('click', () => {
+    intCart.classList.toggle('show');
+    popup.classList.toggle('show')
+    // integer += 1;
+    // intCart.textContent = integer;
+});
 
-        }
-    }
 
 
-}
+// function removeItemFromCartAll(discription, price, count) {//removing all item name
+//     for (var i in products) {
+//         if (products[i].discription === discription) {
+//             products.splice(i, 1);
 
+//         }
+//     }
+
+
+// }
 
 const trashBtn = document.querySelector(".shoping-cart__delete")
 
@@ -258,7 +264,7 @@ function clearCart() {
 }
 
 
-// let cartItem = document.querySelector('.cart');
+let cartItem = document.querySelector('.cart');
 
 
 

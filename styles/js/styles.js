@@ -15,14 +15,13 @@ const popupText = document.querySelector(".navbar__text")
 const sliderImages = document.querySelector(".slider").children;
 const prev = document.querySelector(".hero__prev-btn");
 const next = document.querySelector(".hero__next-btn");
+
+/************adding next and previous ******/
 const totalImages = sliderImages.length;
 let index = 0;
-
-
 prev.addEventListener('click', (e) => {
     // console.log(e)
     e.preventDefault();
-    nextImage('prev');
 });
 next.addEventListener('click', (e) => {
     // console.log(e)
@@ -81,6 +80,8 @@ function nextImage(direction) {
 //     reload();
 // });
 
+/************open and close btn ******/
+
 openMenu.addEventListener('click', (e) => {
     console.log(e)
     navbarList.classList.toggle('navbar__move-in');
@@ -119,6 +120,10 @@ const reload = () => {
     window.location.reload();
 }
 
+
+/************adding to carts******/
+
+
 let navbarText = document.querySelector(".navbar__text")
 const popup = document.querySelector('.shoping-cart')
 let add = document.querySelector(".counter__btn-plus");
@@ -136,10 +141,6 @@ let empty = document.querySelector('.shoping-cart__empty')
 
 let integer = 0;
 
-/************adding to carts******/
-
-
-
 
 let products = [];
 
@@ -151,106 +152,109 @@ let Item = function (discription, price, count) {
 
 };
 /***********add to  cart ****************/
+
 function addItemToCart(discription, price, count) {
     for (let i in products) {
         if (products[i].discription === discription) {
             products[i].count++;
+            // empty.classList.remove("show-up")
             return;
         }
     }
-    var item = new Item(discription, price, count);
+    let item = new Item(discription, price, count);
 
     products.push(item);
 }
 
 
-add.addEventListener("click", () => {
-    if (integer += 1) {
-        int.textContent = integer;
-        empty.classList.add('hide')
-    } else {
-        if (integer <= 0) {
-            int.textContent = 0
-            console.log("int is 0");
-            empty.classList.add('hide')
+add.addEventListener("click", (e) => {
+    if (integer < 0) {        // empty.classList.add('hide')
+
+        int.textContent = 0
+        removeItemFromCart("discription")
+        empty.classList.add("show-up")
+        removeItemFromCart("discription", 125.00, 1)
+
+        savecart()
+        loadCart()
+        console.log(loadCart())
+
+    }
+    else {
+        if
+            (integer += 1) {
+            int.textContent = integer
+            mainPop.classList.add("show-popup")
+            empty.classList.add("hide")
+            addItemToCart("discription", 125.00, 1)
+
+            savecart(products)
+            countCart()
+            totalCart()
+            console.log(countCart())
+            console.log(totalCart())
+
         }
+
     }
 
-    // console.log("int is 0");
-    // empty.classList.add('hide')
 
 
 
-    mainPop.classList.add("show-popup")
-
-    addItemToCart("discription", "$125.00", 1)
-    console.log(products)
+    console.log(e)
 });
 
 /***********remove from cart  ****************/
 
 function removeItemFromCart(discription, price, count) {
+
     for (var i in products) {
-        if (products[i].discription === discription) {
-            products[i].count--;// cart[i].count = cart[i].count -1
-            if (products[i].count === 0) {
-                products.splice(i, 1);
-                return false
+        if (products[i].count === 0) {
+            products[i].discription === discription
+            products.splice(i, 1);
+            return false
+        }
+        else {
+            if (products[i].discription === discription) {
+                products[i].count--;// cart[i].count = cart[i].count -1
+
 
             }
         }
     }
 }
-console.log(products)
-remove.addEventListener("click", () => {
 
-    if (integer <= 0) {
-        int.textContent === 0
+
+
+remove.addEventListener("click", (e) => {
+    e.preventDefault();
+    // if (integer === 0) {
+    //     int.textContent = 0
+    if (integer < 1) {
+        int.textContent = 0
+        mainPop.classList.remove("show-popup");
+        empty.classList.remove("hide");
+        removeItemFromCart("discription", 125.00, 1)
+
+        console.log(products)
+        savecart(products)
+        return false
+
     } else {
-        integer -= 1
-        int.textContent = integer
-        console.log("int is 0");
-        empty.classList.add('hide')
+
+        if (integer -= 1) {
+            int.textContent = integer
+            removeItemFromCart()
+            // mainPop.classList.remove("show-popup");
+            empty.classList.add("hide");
+            removeItemFromCart("discription", 125.00, 0)
+            console.log(products)
+            console.log(e);
+            savecart(products)
+
+        }
 
     }
-
-
-    removeItemFromCart("discription")
-    console.log(products)
-
-});
-
-
-
-cartBtn.addEventListener('click', () => {
-    intCart.classList.toggle('show');
-    popup.classList.toggle('show')
-    // integer += 1;
-    // intCart.textContent = integer;
-});
-
-
-
-// function removeItemFromCartAll(discription, price, count) {//removing all item name
-//     for (var i in products) {
-//         if (products[i].discription === discription) {
-//             products.splice(i, 1);
-
-//         }
-//     }
-
-
-// }
-
-const trashBtn = document.querySelector(".shoping-cart__delete")
-
-trashBtn.addEventListener('click', () => {
-    removeItemFromCartAll("discription", "$125.00", 1)
-    console.log(products)
-    mainPop.classList.remove("show-popup")
-    empty.classList.add("show-up")
-    int.textContent = 0
-
 
 
 });
@@ -263,6 +267,121 @@ function clearCart() {
     console.log(products)
 }
 
+function removeItemFromCartAll(discription) {//removing all item name
+    for (var i in products) {
+        if (products[i].discription === discription) {
+            products.splice(i, 1);
+            return false;
+
+        }
+    }
+}
+
+const trashBtn = document.querySelector(".shoping-cart__delete")
+
+trashBtn.addEventListener('click', () => {
+    empty.classList.add("show-up")
+
+    mainPop.classList.remove("show-popup")
+
+    removeItemFromCartAll("discription")
+    int.textContent = 0
+    reload();
+    console.log(products)
+});
+
+cartBtn.addEventListener('click', () => {
+    intCart.classList.toggle('show');
+    popup.classList.toggle('show')
+    if
+        (integer > 1) {
+        int.textContent = integer
+        mainPop.classList.add("show-popup");
+
+
+    } else {
+        if (integer < 1) {
+            int.textContent === 0
+            mainPop.classList.remove("show-popup");
+            // empty.classList.add("show-up")
+        }
+
+    }
+});
+
+
+/***********save to local storage ****************/
+
+
+
+// var a = ["A", "B", "C"]
+// var b = a.slice();
+
+// b.push("D");
+// console.log(a);
+// console.log(b);
+
+// var a = { age: 22, name: "simret" }
+
+// var b = a;
+// b.name = "brendan";
+// console.log(a)
+// console.log(b)
+
+
+
+function countCart() {//-> return total count
+    var totalCount = 0;
+    for (var i in products) {
+        totalCount += products[i].count;
+    }
+    return totalCount;
+}
+
+function totalCart() {// -> return total cost
+    var totalCost = 0;
+    for (var i in products) {
+        totalCost += products[i].price;
+
+    }
+    return totalCost;
+
+}
+
+
+function ListCart() {// array of items
+    let cartCopy = [];
+    for (let i in products) {
+        let itemx = products[i];
+
+        let itemxCopy = {};
+        for (let p in itemx) {
+            itemxCopy[p] = itemx[p];
+
+
+        }
+        cartCopy.push(itemxCopy);
+        console.log(cartCopy)
+        console.log(itemxCopy)
+
+    }
+    return cartCopy;
+
+}
+
+function savecart() {
+    localStorage.setItem("shoppingCart", JSON.stringify(products));
+    loadCart()
+}
+function loadCart() {
+
+    shopingCart = JSON.parse(localStorage.getItem("shopingCart"));
+
+
+
+}
+
+
 
 let cartItem = document.querySelector('.cart');
 
@@ -270,6 +389,26 @@ let cartItem = document.querySelector('.cart');
 
 
 
+function displayCart() {
+    loadCart()
+    let arrays = ListCart()
+    var output = "";
+    for (var i in arrays) {
+        output = arrays[i].count
+        document.querySelector(".navbar__text").textContent = output;
+    }
+    console.log(arrays)
+
+}
+
+cartItem.addEventListener("click", () => {
+
+    displayCart()
+    popupText.classList.add("show-popuptext")
+    console.log()
+
+
+})
 
 
 
@@ -284,49 +423,75 @@ let cartItem = document.querySelector('.cart');
 
 
 
+// var array = ListCart();
+// console.log("-------------------");
+// console.log(array);
+// console.log(products)
+
+// let localCart;
+// if (localStorage.getItem("localCart") === null) {
+//     localCart = [];
+// } else {
+//     localCart = JSON.parse(localStorage.getItem('localCart'));
+// }
+// localCart.push(products);
+// localStorage.setItem("localCart", JSON.stringify(localCart));
+// console.log(localCart);
+// setItem("shopingCart", JSON.stringify(products));
+
+// let productNumbers =[];
+//  localStorage.getItem('shopingCart');
+
+// if (productNumbers) {
+//     localStorage.setItem('shopingcart', productNumbers + 1);
+//     document.querySelector('.navbar__text').textContent = productNumbers + 1;
+
+// } else {
+//     localStorage.setItem('cartNumbers', 1);
+//     document.querySelector('navbar__text').textContent = 1;
+// }
 
 
 
-// // const addbtn = (count) => {
-// //     for (var i in cart) {
-// //         if (cart[i].count === count) {
-// //             cart[i].count++;
-// //             return;
-// //         }
-// //     }
-// //     var item = new Item(count);
-// //     cart.push(item);
-// //     console.log(cart)
-// // };
 
-// function removeItemFromCart(price, count) {
-//     for (var i in cart) {
-//         if (cart[i].text === text) {
-//             cart[i].count--;// cart[i].count = cart[i].count -1
-//             if (cart[i].count === 0) {
-//                 cart.splice(i, 1);
-//                 mainPop.classList.add('hide')
-//                 empty.classList.add('show-up')
-//             }
 
-//             break;
-//         }
-//     }
+
+
+// let localCart;
+// if (localStorage.getItem("localCart") === null) {
+//     localCart = [];
+// } else {
+//     localCart = JSON.parse(localStorage.getItem('localCart'));
+// }
+// localCart.forEach(function (products) {
+
+//     let output = "";
+
+//     output = document.querySelector('.navbar__text').textContent
+//     output = localCart.count
+// let cartArray = loadCart();
+// let output = "";
+// for (var i in cartArray) {
+//     output = document.querySelector('.navbar__text').textContent
+//     output = cartArray[i].count
 
 // }
-// add.addEventListener("click", () => {
-
-// });
-// // addItemToCart("winter", 125.00, 1)
-// // // addItemToCart("Autumn Limited Edition...ple", 125.00, 1)
-// // // addItemToCart("spring Limited Edition...ple", 125.00, 1)
-// // // addItemToCart("fall", 125.00, 1)
-// // addItemToCart("winter", 125.00, 1)
+// }
 
 
 
-// // console.log(cart[0].count);
 
-// // removeItemFromCart("winter")
 
-// // console.log(cart[0].count);
+
+
+
+
+
+
+
+
+
+
+
+
+

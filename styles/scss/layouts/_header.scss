@@ -100,6 +100,9 @@
     .hide {
         display: none;
     }
+    .show-popuptext {
+        display: block;
+    }
     .show {
         display: block;
         @include laptop-query {
@@ -209,7 +212,39 @@
         width: 70px;
     }
     &__text {
+        position: absolute;
+        width: 23px;
+        height: 15px;
+        text-align: center;
+        top: 23px;
+        right: 68px;
+        color: white;
+        background-color: #ff7d1a;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 900;
+        z-index: 4;
         display: none;
+        @include laptop-query {
+            position: absolute;
+            width: 23px;
+            height: 15px;
+            text-align: center;
+            top: 31px;
+            right: 141px;
+            color: white;
+            background-color: #ff7d1a;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 900;
+            z-index: 4;
+            display: none;
+        }
+        @include laptop-l-query {
+            top: 31px;
+            right: 320px;
+            color: white;
+        }
     }
     &__shop-cart-icon {
         border: none;

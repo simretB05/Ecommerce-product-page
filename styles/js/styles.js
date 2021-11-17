@@ -176,8 +176,8 @@ add.addEventListener("click", (e) => {
         removeItemFromCart("discription", 125.00, 1)
 
         savecart()
-        loadCart()
-        console.log(loadCart())
+
+
 
     }
     else {
@@ -188,11 +188,8 @@ add.addEventListener("click", (e) => {
             empty.classList.add("hide")
             addItemToCart("discription", 125.00, 1)
 
-            savecart(products)
-            countCart()
-            totalCart()
-            console.log(countCart())
-            console.log(totalCart())
+
+            savecart()
 
         }
 
@@ -237,7 +234,8 @@ remove.addEventListener("click", (e) => {
         removeItemFromCart("discription", 125.00, 1)
 
         console.log(products)
-        savecart(products)
+        savecart()
+
         return false
 
     } else {
@@ -250,7 +248,10 @@ remove.addEventListener("click", (e) => {
             removeItemFromCart("discription", 125.00, 0)
             console.log(products)
             console.log(e);
-            savecart(products)
+
+            savecart()
+            console.log(totalCart())
+
 
         }
 
@@ -341,7 +342,7 @@ function countCart() {//-> return total count
 function totalCart() {// -> return total cost
     var totalCost = 0;
     for (var i in products) {
-        totalCost += products[i].price;
+        totalCost += products[i].price
 
     }
     return totalCost;
@@ -371,11 +372,12 @@ function ListCart() {// array of items
 
 function savecart() {
     localStorage.setItem("shoppingCart", JSON.stringify(products));
-    loadCart()
+    totalCart()
+
 }
 function loadCart() {
-
-    shopingCart = JSON.parse(localStorage.getItem("shopingCart"));
+    savecart()
+    cart = JSON.parse(localStorage.getItem("shopingCart"));
 
 
 
@@ -385,17 +387,21 @@ function loadCart() {
 
 let cartItem = document.querySelector('.cart');
 
-
-
-
-
 function displayCart() {
     loadCart()
     let arrays = ListCart()
-    var output = "";
+    let outputCount = "";
+    let outputPrice = "";
+    let outputTotal = "";
     for (var i in arrays) {
-        output = arrays[i].count
-        document.querySelector(".navbar__text").textContent = output;
+        outputCount = arrays[i].count
+        outputPrice = arrays[i].price
+        outputTotal = arrays[i].price * arrays[i].count
+        document.querySelector(".shoping-cart__number").textContent = outputCount;
+        document.querySelector(".shoping-cart__price").textContent = outputPrice;
+        document.querySelector(".shoping-cart__span").textContent = outputTotal
+        document.querySelector(".navbar__text").textContent = outputCount
+
     }
     console.log(arrays)
 
@@ -405,6 +411,7 @@ cartItem.addEventListener("click", () => {
 
     displayCart()
     popupText.classList.add("show-popuptext")
+
     console.log()
 
 

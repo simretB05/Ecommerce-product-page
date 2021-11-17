@@ -1,7 +1,6 @@
 .shoping-cart {
     display: block;
     margin: auto;
-    width: 100%;
     width: 97%;
     height: 259px;
     background-color: $c-White;
@@ -13,19 +12,23 @@
     display: none;
 
     @include tablet-query {
-        width: 363px;
-        top: 7%;
-        left: 52%;
-        right: -49%;
+        margin: 0 auto;
+        width: 50%;
+        top: 74px;
+        left: 300px;
     }
     @include laptop-query {
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-        max-width: 363px;
-        width: 100%;
-        top: 9%;
+        width: 32%;
+        top: 4.6%;
         /* right: -102%; */
-        left: 75%;
+        left: 63%;
         margin: 0;
+    }
+    @include laptop-l-query {
+        width: 21%;
+        top: 5%;
+        left: 71%;
     }
     &__popup {
         display: flex;

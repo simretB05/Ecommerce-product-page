@@ -164,11 +164,17 @@
         }
     }
 }
-
+.active {
+    border-color: rgba(252, 160, 175, 0.7) !important;
+}
 .slider {
     display: flex;
     max-width: 100%;
     overflow: hidden;
+    // width: 42vmin;
+    // overflow: hidden;
+    // height: 40vmin;
+    // list-style: none;
 
     @include tablet-query {
         justify-content: center;
@@ -217,6 +223,14 @@
         }
     }
 }
+.slider__list-item-img {
+    @include laptop-query {
+        width: 40vmin;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 10px;
+    }
+}
 
 .thumbnails {
     display: none;
@@ -224,7 +238,7 @@
         display: none;
     }
     @include laptop-query {
-        width: 79%;
+        width: 81%;
         margin: 1rem 0 0 3rem;
         display: flex;
         line-height: 0;
@@ -242,7 +256,7 @@
     }
 
     &__img {
-        max-width: 8vmin;
+        max-width: 9vmin;
         border-radius: 5px;
         object-fit: cover;
         object-position: top;
@@ -252,39 +266,6 @@
         }
         @include laptop-l-query {
             max-width: 8vmin;
-        }
-    }
-}
-
-.humbnails {
-    display: none;
-    @include laptop-query {
-        display: flex;
-        flex-direction: row;
-        line-height: 0;
-        line-height: 2px;
-        list-style: none;
-        margin: 0;
-    }
-
-    &__item {
-        margin: 0;
-        flex: auto;
-        padding: 1.5rem 1rem 0 0;
-    }
-
-    &__item-link {
-        display: block;
-    }
-
-    &__img {
-        width: 5vmin;
-        border-radius: 5px;
-        object-fit: cover;
-        object-position: top;
-        &:hover {
-            border: 2px solid $c-Orange;
-            opacity: 0.5;
         }
     }
 }
@@ -310,120 +291,124 @@
     flex-direction: column;
     padding: $p-base 0;
 }
-
-.overlay-popup {
-    z-index: 80;
-    position: absolute;
-    top: 50%;
-    object-position: 50% 50%;
+.main-overlay {
+    // display: none;
+    @include laptop-query {
+        display: none;
+    }
+}
+.overlay__navigation {
     display: none;
+    @include laptop-query {
+        position: absolute;
+        display: flex;
+        top: 50%;
+        z-index: 60;
+    }
+}
+.overlay__prev-btn {
+    position: absolute;
+
+    left: 37px;
+}
+.overlay__next-btn {
+    position: absolute;
+    left: 446px;
+}
+.overlay__menu {
+    display: flex;
+    justify-content: end;
 }
 .glider {
     display: none;
     @include laptop-query {
-        padding: 6rem 0 0 4rem;
-        display: block;
+        display: flex;
+        overflow: hidden;
+        width: 51vmin;
+        overflow: hidden;
+        height: 53vmin;
+        list-style: none;
+        // need explanation worked but need more explining
     }
     @include laptop-l-query {
-        padding: 6rem 0 0 8rem;
-        display: block;
-    }
-    &__navigation {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        margin: 0;
-        position: absolute;
-        z-index: -18;
-    }
-    @include tablet-query {
-        height: 40vw;
-        width: 44vw;
-    }
-    @include laptop-query {
-        transform: translate(0, 50%);
-    }
-
-    &__prev-btn,
-    &__next-btn {
-        background-color: transparent;
-        border: none;
-        background: $c-White;
-        cursor: pointer;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5px;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    &__menu {
-    }
-    &__close {
-        width: 40vmin;
-        display: flex;
-        padding: 2rem 0;
-        justify-content: end;
-        background-color: transparent;
-        border: none;
+        justify-items: center;
+        align-content: center;
+        max-width: 100%;
     }
 
     &__list {
+        max-width: 100%;
         @include laptop-query {
-            width: 42vmin;
-            overflow: hidden;
-            height: 40vmin;
-            list-style: none;
+            display: flex;
+            max-width: 88%;
+            z-index: 4;
         }
-        &__list-item {
-            @include laptop-query {
-                width: 7vmin;
-                height: 8vmin;
-                position: absolute;
-                z-index: 1;
-                z-index: 3;
-                animation: slide 1s 1;
-            }
+        @include laptop-l-query {
+            width: 89%;
+        }
+    }
+
+    &__list-img {
+        @include laptop-query {
+            width: 370px;
+            height: 82%;
+            object-fit: cover;
+            margin: 4rem 2rem 0 4rem;
+            object-position: 50% 50%;
+            border-radius: 9px;
         }
     }
 }
-.glider__list-item-img {
+.glider-change {
+    display: block;
+    z-index: 20;
+    position: absolute;
+    display: block;
+    z-index: 20;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.humbnails {
+    display: none;
     @include laptop-query {
-        width: 40vmin;
+        display: none;
+    }
+    @include laptop-query {
+        width: 89%;
+        margin: 1rem 0 0 4rem;
+        display: flex;
+        line-height: 0;
+        line-height: 2px;
+        list-style: none;
+    }
+
+    &__item {
+        margin: 0;
+        flex: auto;
+    }
+
+    &__item-link {
+        display: block;
+    }
+
+    &__img {
+        max-width: 9vmin;
+        border-radius: 5px;
         object-fit: cover;
         object-position: top;
-        border-radius: 10px;
-    }
-}
-.glider li:target {
-    z-index: 3;
-    animation: slideon 1s 1;
-    @keyframes slideon {
-        0% {
-            transform: translateY(-100%);
+        &:hover {
+            border: 2px solid $c-Orange;
+            opacity: 0.5;
         }
-        100% {
-            transform: translateY(0%);
+        @include laptop-l-query {
+            max-width: 8vmin;
         }
     }
 }
-
-.glider li:not(:target) {
-    animation: hiddenin 1s 1;
+.active-ocerlay {
+    border-color: rgba(252, 160, 175, 0.7) !important;
 }
-
-@keyframes hiddenin {
-    0% {
-        z-index: 2;
-    }
-    100% {
-        z-index: 2;
-    }
-}
-
 .description-section {
     @include laptop-query {
         margin: 6rem 28px;
@@ -598,5 +583,44 @@
         color: $c-Light-grayish-blue;
         font-weight: $fw-bold;
         padding: 0 1rem;
+    }
+}
+.overlay-show {
+    display: none;
+    @include laptop-query {
+        // z-index: 80;
+        // position: absolute;
+        // top: 50%;
+        object-position: 50% 50%;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // pointer-events: all;
+        display: block;
+        // background-color: transparent;
+        // width: 300px;
+        // height: 350px;
+        // padding: 30px 30px;
+        // position: absolute;
+        // transform: translate(0, -112%);
+        // left: 50%;
+        // top: 50%;
+        // right: 50%;
+        // border-radius: 8px;
+        z-index: 20;
+        &::before {
+            content: "";
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            background-color: $c-Black;
+            opacity: 0.77;
+            pointer-events: none;
+            pointer-events: all;
+        }
     }
 }

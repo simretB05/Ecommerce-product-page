@@ -316,8 +316,11 @@
     left: 446px;
 }
 .overlay__menu {
-    display: flex;
-    justify-content: end;
+    display: none;
+    @include laptop-query {
+        display: flex;
+        justify-content: end;
+    }
 }
 .glider {
     display: none;
@@ -375,8 +378,8 @@
         display: none;
     }
     @include laptop-query {
-        width: 89%;
-        margin: 1rem 0 0 4rem;
+        width: 79%;
+        margin: 1rem 0 0 4.3rem;
         display: flex;
         line-height: 0;
         line-height: 2px;

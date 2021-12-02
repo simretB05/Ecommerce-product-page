@@ -980,12 +980,18 @@
 }
 
 .overlay__menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .overlay__menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: end;
+  }
 }
 
 .glider {
@@ -1069,8 +1075,8 @@
 
 @media screen and (min-width: 1024px) {
   .humbnails {
-    width: 89%;
-    margin: 1rem 0 0 4rem;
+    width: 79%;
+    margin: 1rem 0 0 4.3rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

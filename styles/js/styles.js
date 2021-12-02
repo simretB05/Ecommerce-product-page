@@ -468,8 +468,45 @@ popupClose.addEventListener('click', (e) => {
 });
 
 
-    // /***********hover on open overlay ****************/
+// /***********hover on open overlay ****************/
 
+
+const sliderimageOverlay = document.querySelector(".glider").children;
+const prevOverlay = document.querySelector(".overlay__prev-btn")
+const nextOverlay = document.querySelector(".overlay__next-btn")
+
+const totalimageOverlay = sliderimageOverlay.length;
+
+prevOverlay.addEventListener('click', (e) => {
+    // console.log(e)
+    sliderOverlay('next');
+
+});
+nextOverlay.addEventListener('click', (e) => {
+    sliderOverlay('next');
+});
+
+function sliderOverlay(directions) {
+    console.log(directions);
+    if (directions == 'next') {
+        index++;
+        if (index == totalimageOverlay) {
+            index = 0;
+        }
+    } else {
+        if (index == 0) {
+            index = totalimageOverlay - 1;
+
+        } else {
+            index--;
+        }
+    }
+    for (let i = 0; i < sliderimageOverlay.length; i++) {
+        sliderimageOverlay[i].classList.remove('show-overlay');
+
+    }
+    sliderimageOverlay[index].classList.add('show-overlay');
+}
 
 
 
